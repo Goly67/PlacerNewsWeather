@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #0a1929;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        header {
+            background-color: #1a2b3c;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+            color: #4fc3f7;
+        }
+        .weather-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .weather-card {
+            background-color: #1a2b3c;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .weather-card h2 {
+            font-size: 1.8rem;
+            color: #4fc3f7;
+            margin-bottom: 1rem;
+        }
+        .weather-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        .temperature {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ff9800;
+            margin-bottom: 0.5rem;
+        }
+        .condition {
+            font-size: 1.2rem;
+            color: #81d4fa;
+            margin-bottom: 1rem;
+        }
+        .weather-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        .weather-detail {
+            display: flex;
+            align-items: center;
+        }
+        .weather-detail-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+            color: #4fc3f7;
+        }
+        .forecast {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #2c3e50;
+        }
+        .forecast-day {
+            text-align: center;
+        }
+        .forecast-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .forecast-temp {
+            font-weight: bold;
+            color: #ff9800;
+        }
+        .last-updated {
+            text-align: center;
+            margin-top: 2rem;
+            color: #607d8b;
+            font-size: 0.9rem;
+        }
+        .logo {
+            width: 50px;
+            height: 50px;
+            margin-right: 1rem;
+        }
+        header {
+            background-color: #1a2b3c;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        footer {
+            background-color: #1a2b3c;
+            padding: 1rem 0;
+            margin-top: auto;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #607d8b;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+<img src="httpshttps://drive.google.com/file/d/1zyA3bUKMwZB5JUChbl9j_iHXMxwmmmi7/preview" height="50&width=50" alt="Placer News Logo" class="logo">
+                <h1>Placer News</h1>
+            </div>
+        </div>
+    </header>
+    <main class="container">
+        <div class="weather-grid">
+            <div class="weather-card">
+                <h2>Surigao City, SDN</h2>
+                <div class="weather-icon">🌤️</div>
+                <div class="temperature">28°C</div>
+                <div class="condition">Cloudy</div>
+                <div class="weather-details">
+                    <div class="weather-detail">
+                        <span class="weather-detail-icon">💧</span>
+                        <span>Humidity: 82%</span>
+                    </div>
+                    <div class="weather-detail">
+                        <span class="weather-detail-icon">💨</span>
+                        <span>Wind: 45 km/h</span>
+                    </div>
+                    <div class="weather-detail">
+                        <span class="weather-detail-icon">🌡️</span>
+                        <span>Feels like: 33°C</span>
+                    </div>
+                    <div class="weather-detail">
+                        <span class="weather-detail-icon">☁️</span>
+                        <span>Cloud cover: Undetermined</span>
+                    </div>
+                </div>
+                <div class="forecast">
+                    <div class="forecast-day">
+                        <div>Tue</div>
+                        <div class="forecast-icon">🌤️</div>
+                        <div class="forecast-temp">28°C</div>
+                    </div>
+                    <div class="forecast-day">
+                        <div>Wed</div>
+                        <div class="forecast-icon">⛈️</div>
+                        <div class="forecast-temp">27°C</div>
+                    </div>
+                    <div class="forecast-day">
+                        <div>Thu</div>
+                        <div class="forecast-icon">️🌤️</div>
+                        <div class="forecast-temp">22°C</div>
+                    </div>
+                    <div class="forecast-day">
+                        <div>Fri</div>
+                        <div class="forecast-icon">⛈️</div>
+                        <div class="forecast-temp">32°C</div>
+                    </div>
+                </div>
+            </div>
+            <div class="weather-card">
+                <h2>Surigao City - Alert</h2>
+                <h3 style="text-align: center; font-size: 1.8rem; margin-bottom: 1.4rem;">Signal number 1</h3>
+                <p>Under present weather conditions, At 3:00 PM today, the center of Tropical Storm "KRISTINE" {TRAMI} was estimated based on all available data at 275 km East Northeast of Virac Catanduanes or 400 km East of Daet, Camarines Norte (14.1°N, 126.7°E) with maximum sustained winds of 75 km/h near the center and gustiness of up to 90 km/h. It is moving West Northwestward at 15 km/h.
+The 12-hour rainfall forecast is moderate rains and thunderstorms.<br /><br />
+WATERCOURSES LIKELY TO BE AFFECTED :
+<br /><br />
++ **Agusan Del Sur** - Rivers and its tributaries particularly Ojot, Wawa, Libang, Maosam, Kasilan, Gibong, Adgaoan, Simulao, Kayonan and Andanan.
++ **Dinagat Islands** - Rivers and its tributaries particularly Malinao Inlet and Gaas Lulet.<br />
++ **Surigao Del Norte** - Rivers and its tributaries particularly Surigao and Magallanes.<br />
++ **Agusan Del Norte** - Rivers and its tributaries particularly Lake-Mainit-Tubay, Asiga, Agusan, Linugos and Cabadbaran.<br />
++ **Surigao Del Sur** - Rivers and its tributaries particularly Cantilan, Carac-An, Tandag, Tago, Hubo-Oteiza, Hinatuan, and Bislig.<br />
+<br />
+People living near the mountain slopes and in the low lying areas of the above mentioned river systems and the **Local Disaster Risk Reduction and Management Councils** concerned still advised to take necessary precautionary measures.</p>
+            </div>
+        </div>
+        <p class="last-updated">Last updated: October 21, 2024 - 12:01 AM</p>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Placer News. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        console.log("Weather dashboard loaded successfully");
+    </script>
+</body>
+</html>
