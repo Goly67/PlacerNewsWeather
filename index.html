@@ -115,14 +115,25 @@
 
         .forecast {
             display: flex;
-            justify-content: space-between;
+            /* Use flexbox to layout children in a row */
+            overflow-x: auto;
+            /* Allows horizontal scrolling if needed */
+            gap: 10px;
+            /* Optional: Adds space between forecast items */
             margin-top: 1rem;
             padding-top: 1rem;
             border-top: 1px solid #2c3e50;
         }
 
         .forecast-day {
+            flex: 0 0 auto;
+            /* Prevent flex items from shrinking */
             text-align: center;
+            /* Center align the text */
+            min-width: 80px;
+            /* Set a minimum width for each forecast item */
+            padding: 10px;
+            /* Optional: Adds padding */
         }
 
         .forecast-icon {
@@ -236,7 +247,7 @@
 
             .location-picker select,
             .location-picker button {
-                font-size: 0.9rem;
+                font-size: 1.5rem;
                 /* Smaller size on mobile */
             }
 
@@ -257,14 +268,24 @@
             }
 
             .forecast {
-                flex-direction: column;
-                /* Stack forecast items */
+                flex-direction: row;
+                /* Ensure it stays horizontal on smaller screens */
             }
 
             .forecast-day {
                 margin-bottom: 1rem;
                 /* Add space between days */
             }
+        }
+
+        .storm-alert {
+            font-size: 1.8rem;
+            color: red;
+            /* Ensure this is red */
+            text-align: center;
+            /* Center the text */
+            margin-bottom: 0.5rem;
+            /* Space below the alert */
         }
     </style>
 </head>
@@ -287,15 +308,16 @@
                     <option value="Surigao City">Surigao City</option>
                     <option value="Manila">Manila</option>
                     <option value="Placer">Placer</option>
-                    <option value="Cebu">Cebu City</option>
+                    <option value="Cebu City">Cebu City</option>
                 </select>
-                <button onclick="updateWeather()">Check Weather</button>
             </div>
 
             <!-- Weather card -->
             <div id="weatherContainer" class="weather-grid">
                 <!-- Default weather card for Surigao City -->
                 <div class="weather-card">
+                    <h2 id="stormAlert" class="storm-alert" style="display: none; color: red; font-size: 1.8rem;">SIGNAL
+                        NO. 1</h2> <!-- Storm alert -->
                     <h2 id="locationName">Surigao City</h2>
                     <div id="weatherIcon" class="weather-icon">☁️</div>
                     <div id="temperature" class="temperature">29°C</div>
@@ -420,7 +442,16 @@
             }
         };
 
-        // Function to update weather info based on selected location
+        // Define storm alerts for each location
+        const stormAlerts = {
+            "Surigao City": { signal: "SIGNAL NO. 1" },
+            "Manila": { signal: "SIGNAL NO. 3" },
+            "Placer": { signal: "SIGNAL NO. 2" },
+            "Cebu City": { signal: "SIGNAL NO. 1" },
+            // Add more locations and their respective signals as needed
+        };
+
+        // Function to update weather information
         function updateWeather() {
             const selectedLocation = document.getElementById('locationSelect').value;
             const weather = weatherData[selectedLocation];
@@ -434,6 +465,14 @@
             document.getElementById('feelsLike').innerText = `Feels like: ${weather.feelsLike}`;
             document.getElementById('Precipitation').innerText = `Precipitation: ${weather.Precipitation}`;
 
+            // Show storm alert for specific locations
+            if (stormAlerts[selectedLocation]) {
+                document.getElementById('stormAlert').innerText = stormAlerts[selectedLocation].signal; // Set the storm alert
+                document.getElementById('stormAlert').style.display = 'block'; // Show alert
+            } else {
+                document.getElementById('stormAlert').style.display = 'none'; // Hide alert
+            }
+
             // Update forecast
             for (let i = 0; i < 4; i++) {
                 document.getElementById(`day${i + 1}`).innerText = weather.forecast[i].day;
@@ -445,8 +484,9 @@
             document.getElementById('lastUpdated').textContent = `Last updated: 10/23/2024 - 7:00 PM`; // Change this to your current time
         }
 
-        // Initial load
-        updateWeather();
+        // Call updateWeather() when the location is changed or page loads
+        document.getElementById('locationSelect').addEventListener('change', updateWeather);
+        window.onload = updateWeather;
     </script>
 </body>
 
