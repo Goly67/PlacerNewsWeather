@@ -63,6 +63,10 @@
             padding: 1.5rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
         }
 
         .weather-card:hover {
@@ -187,6 +191,7 @@
             display: flex;
             justify-content: center;
             margin-bottom: 1rem;
+            width: 100%;
         }
 
         .location-picker select {
@@ -473,7 +478,7 @@
             }
 
             // Set the last updated time to when you saved the code
-            document.getElementById('lastUpdated').textContent = `Last updated: 10/23/2024 - 7:00 PM`; // Change this to your current time
+            document.getElementById('lastUpdated').textContent = `Last updated: 10/23/2024 - 9:00 PM`; // Change this to your current time
         }
 
         // Call updateWeather() when the location is changed or page loads
