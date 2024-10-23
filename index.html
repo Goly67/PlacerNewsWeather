@@ -47,23 +47,35 @@
         }
 
         .weather-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            /* Ensure only one column for proper centering */
+            display: flex;
+            /* Change from grid to flex for better alignment */
+            justify-content: center;
+            /* Center content horizontally */
+            flex-direction: column;
+            /* Stack items vertically */
             gap: 2rem;
+            /* Space between items */
             margin-top: 2rem;
-            /* Space between the top of the page and the weather card */
-            position: relative;
-            /* Ensure that absolute positioning of child elements is relative to this container */
+            /* Space above the weather card */
         }
 
         .weather-card {
-            background-color: #1a2b3c;
-            border-radius: 10px;
+            width: 100%;
+            /* Ensure it takes full width of its container */
+            max-width: 400px;
+            /* Set a maximum width for better responsiveness */
             padding: 1.5rem;
+            /* Padding inside the card */
+            background-color: #1a2b3c;
+            /* Card background color */
+            border-radius: 10px;
+            /* Rounded corners */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Shadow for depth */
             transition: transform 0.3s;
+            /* Hover effect */
         }
+
 
         .weather-card:hover {
             transform: scale(1.05);
