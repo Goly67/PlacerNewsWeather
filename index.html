@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="iage/x-icon"
+        href="https://lh5.googleusercontent.com/Fol2SmB3PwOBfllrQC1yc07kXb0Q1sz2sIG_gebzoTBM3tG2oH9V9XI_uuTPv1aAgPSPW854chkqtarHLo_kGagLw6hgzn6aYvATVteYDD6lrFpUf52z-ppvskPeftZJxw=w960">
     <title>Placer News Weather</title>
     <style>
         * {
@@ -10,6 +13,7 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
@@ -19,68 +23,96 @@
             display: flex;
             flex-direction: column;
         }
+
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
         }
+
         header {
             background-color: #1a2b3c;
             padding: 1rem 0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
+
         h1 {
-            font-size: 2rem;
-            text-align: center;
+            font-size: 3rem;
+            /* Ensure the title size is appropriate */
             color: #4fc3f7;
+            /* Title color */
+            margin: 0;
+            /* Remove default margin for proper alignment */
         }
+
         .weather-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr;
+            /* Ensure only one column for proper centering */
             gap: 2rem;
             margin-top: 2rem;
+            /* Space between the top of the page and the weather card */
+            position: relative;
+            /* Ensure that absolute positioning of child elements is relative to this container */
         }
+
         .weather-card {
             background-color: #1a2b3c;
             border-radius: 10px;
             padding: 1.5rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
         }
+
+        .weather-card:hover {
+            transform: scale(1.05);
+            /* Add hover effect */
+        }
+
         .weather-card h2 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
+            /* Reduced size for better scaling */
             color: #4fc3f7;
             margin-bottom: 1rem;
         }
+
         .weather-icon {
             font-size: 4rem;
             margin-bottom: 1rem;
         }
+
         .temperature {
-            font-size: 3rem;
+            font-size: 2.5rem;
+            /* Adjusted size for responsiveness */
             font-weight: bold;
             color: #ff9800;
             margin-bottom: 0.5rem;
         }
+
         .condition {
             font-size: 1.2rem;
             color: #81d4fa;
             margin-bottom: 1rem;
         }
+
         .weather-details {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
         }
+
         .weather-detail {
             display: flex;
             align-items: center;
         }
+
         .weather-detail-icon {
             font-size: 1.5rem;
             margin-right: 0.5rem;
             color: #4fc3f7;
         }
+
         .forecast {
             display: flex;
             justify-content: space-between;
@@ -88,38 +120,49 @@
             padding-top: 1rem;
             border-top: 1px solid #2c3e50;
         }
+
         .forecast-day {
             text-align: center;
         }
+
         .forecast-icon {
             font-size: 2rem;
             margin-bottom: 0.5rem;
         }
+
         .forecast-temp {
             font-weight: bold;
             color: #ff9800;
         }
+
         .last-updated {
             text-align: center;
             margin-top: 2rem;
             color: #607d8b;
             font-size: 0.9rem;
         }
+
         .logo {
-            width: 50px;
-            height: 50px;
+            width: 80px;
+            /* Adjust size as needed */
+            height: auto;
+            /* Maintain aspect ratio */
             margin-right: 1rem;
+            /* Space between logo and title */
         }
-        header {
-            background-color: #1a2b3c;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
+
+
         .header-content {
             display: flex;
             align-items: center;
-            justify-content: flex-start;
+            /* Center logo and title vertically */
+            justify-content: center;
+            /* Center horizontally within the container */
+            text-align: center;
+            /* Ensure text is centered */
         }
+
+
         footer {
             background-color: #1a2b3c;
             padding: 1rem 0;
@@ -128,154 +171,179 @@
             font-size: 0.9rem;
             color: #607d8b;
         }
+
+        .location-picker {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            /* Space between the picker and the weather card */
+            position: relative;
+            /* Change this to relative */
+            left: 50%;
+            /* Center horizontally */
+            transform: translateX(-50%);
+            /* Shift left to perfectly center */
+        }
+
+        .location-picker select {
+            padding: 0.5rem;
+            border: 2px solid #4fc3f7;
+            border-radius: 5px;
+            color: #ffffff;
+            background-color: #1a2b3c;
+            font-size: 1rem;
+            margin-right: 1rem;
+            outline: none;
+            transition: background-color 0.3s, border 0.3s;
+        }
+
+        .location-picker select:hover,
+        .location-picker select:focus {
+            background-color: #2c3e50;
+            border-color: #81d4fa;
+        }
+
+        .location-picker button {
+            padding: 0.5rem 1rem;
+            background-color: #4fc3f7;
+            border: none;
+            border-radius: 5px;
+            color: #1a2b3c;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .location-picker button:hover {
+            background-color: #81d4fa;
+            color: #0a1929;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .temperature {
+                font-size: 2rem;
+            }
+
+            .weather-card h2 {
+                font-size: 1.4rem;
+            }
+
+            .location-picker select,
+            .location-picker button {
+                font-size: 0.9rem;
+                /* Smaller size on mobile */
+            }
+
+            .forecast-icon {
+                font-size: 1.5rem;
+            }
+
+            .forecast-temp {
+                font-size: 1rem;
+                /* Smaller size for forecast */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .weather-details {
+                grid-template-columns: 1fr;
+                /* Stack details on smaller screens */
+            }
+
+            .forecast {
+                flex-direction: column;
+                /* Stack forecast items */
+            }
+
+            .forecast-day {
+                margin-bottom: 1rem;
+                /* Add space between days */
+            }
+        }
     </style>
 </head>
+
 <body>
     <header>
         <div class="container">
             <div class="header-content">
-                <!--<img src="httpshttps://drive.google.com/file/d/1zyA3bUKMwZB5JUChbl9j_iHXMxwmmmi7/preview" height="50&width=50" alt="Placer News Logo" class="logo">-->
+                <img src="https://lh5.googleusercontent.com/Fol2SmB3PwOBfllrQC1yc07kXb0Q1sz2sIG_gebzoTBM3tG2oH9V9XI_uuTPv1aAgPSPW854chkqtarHLo_kGagLw6hgzn6aYvATVteYDD6lrFpUf52z-ppvskPeftZJxw=w960"
+                    height="50&width=50" alt="Placer News Logo" class="logo">
                 <h1>Placer News</h1>
             </div>
         </div>
     </header>
     <main class="container">
         <div class="weather-grid">
-            <div class="weather-card">
-                <h2>Surigao City, SDN</h2>
-                <div class="weather-icon">☁️</div>
-                <div class="temperature">29°C</div>
-                <div class="condition">Cloudy</div>
-                <div class="weather-details">
-                    <div class="weather-detail">
-                        <span class="weather-detail-icon">💧</span>
-                        <span>Humidity: 76%</span>
-                    </div>
-                    <div class="weather-detail">
-                        <span class="weather-detail-icon">💨</span>
-                        <span>Wind: 34 km/h</span>
-                    </div>
-                    <div class="weather-detail">
-                        <span class="weather-detail-icon">🌡️</span>
-                        <span>Feels like: 33°C</span>
-                    </div>
-                    <div class="weather-detail">
-                        <span class="weather-detail-icon">☁️</span>
-                        <span>Cloud cover: ?</span>
-                    </div>
-                </div>
-                <div class="forecast">
-                    <div class="forecast-day">
-                        <div>Thu</div>
-                        <div class="forecast-icon">🌤️</div>
-                        <div class="forecast-temp">32°C</div>
-                    </div>
-                    <div class="forecast-day">
-                        <div>Fri</div>
-                        <div class="forecast-icon">⛈️</div>
-                        <div class="forecast-temp">32°C</div>
-                    </div>
-                    <div class="forecast-day">
-                        <div>Sat</div>
-                        <div class="forecast-icon">️⛈️</div>
-                        <div class="forecast-temp">29°C</div>
-                    </div>
-                    <div class="forecast-day">
-                        <div>Fri</div>
-                        <div class="forecast-icon">⛈️</div>
-                        <div class="forecast-temp">31°C</div>
-                    </div>
-                </div>
+            <!-- Location Picker Dropdown -->
+            <div class="location-picker">
+                <select id="locationSelect">
+                    <option value="Surigao City">Surigao City</option>
+                    <option value="Manila">Manila</option>
+                    <option value="Placer">Placer</option>
+                    <option value="Cebu">Cebu City</option>
+                </select>
+                <button onclick="updateWeather()">Check Weather</button>
             </div>
-            <div class="weather-card">
-                <h2>Weather Alert</h2>
-                <h3 style="text-align: center; font-size: 1.8rem; margin-bottom: 1.4rem;">Signal number 1</h3>
-                <p>TROPICAL CYCLONE BULLETIN NR. 10
-Tropical Storm #KristinePH (TRAMI)
-Issued at 8:00 AM, 23 October 2024
-Valid for broadcast until the next bulletin at 11:00 AM today.
-<br/><br/>
-“KRISTINE” MAINTAINS ITS STRENGTH WHILE MOVING WEST NORTHWESTWARD OVER THE SEA EAST OF QUEZON
-<br/><br/>
-Location of Center (7:00 AM): The center of Tropical Storm KRISTINE was estimated based on all available data at 310 km East of Baler, Aurora or 310 km East Northeast of Infanta, Quezon (15.4°N, 124.5°E) 
-Intensity: Maximum sustained winds of 85 km/h near the center, gustiness of up to 105 km/h, and central pressure of 985 hPa
-Present Movement: West northwestward at 15 km/h
-Extent of Tropical Cyclone Winds: Strong to gale-force winds extend outwards up to 850 km from the center
-<br/><br/>
-TROPICAL CYCLONE WIND SIGNALS (TCWS) IN EFFECT
-TCWS No. 2
-Wind threat: Gale-force winds
-Luzon
-Ilocos Norte, Ilocos Sur, La Union, Pangasinan, Apayao, Abra, Kalinga, Mountain Province, Ifugao, Benguet, mainland Cagayan, Isabela, Quirino, Nueva Vizcaya, Aurora, Nueva Ecija, Bulacan, Tarlac, Pampanga, Zambales, the northern and eastern portions of Quezon (Infanta, General Nakar, Real, Mauban, Perez, Alabat, Quezon, Calauag, Tagkawayan, Guinayangan)  including Polillo Islands, Camarines Norte, Camarines Sur, Catanduanes, Albay, and the northeastern portion of Sorsogon (Prieto Diaz, City of Sorsogon)
-Warning lead time: 24 hours
-Range of wind speeds: 62 to 88 km/h (Beaufort 8 to 9)
-Potential impacts of winds: Minor to moderate threat to life and property
-<br/><br/>
-TCWS No. 1
-Wind threat: Strong winds
-Luzon
-Batanes, Babuyan Islands, Bataan, Metro Manila, Rizal, Cavite, Laguna, Batangas, the rest of Quezon, Occidental Mindoro including Lubang Islands, Oriental Mindoro, Marinduque, Romblon, Calamian Islands, the rest of Sorsogon, and Masbate including Ticao and Burias Islands
-Visayas
-Aklan, Capiz, Antique including Caluya Islands, Iloilo, Guimaras, the northern portion of Negros Occidental (Pontevedra, La Castellana, Moises Padilla, Bago City, La Carlota City, Valladolid, Pulupandan, Bacolod City, San Enrique, Murcia, Silay City, City of Talisay, Enrique B. Magalona, Manapla, City of Victorias, Cadiz City, Sagay City, City of Escalante, Toboso, Calatrava, Salvador Benedicto, San Carlos City), the northern portion of Negros Oriental (Vallehermoso, Canlaon City, City of Guihulngan), the northern and central portions of Cebu (Alcantara, Argao, Dumanjug, Sibonga, Pinamungahan, Ronda, Liloan, Cebu City, Moalboal, Consolacion, Danao City, Borbon, Carmen, Daanbantayan, Tuburan, City of Bogo, Tabogon, City of Naga, Lapu-Lapu City, City of Carcar, Mandaue City, Catmon, Minglanilla, Toledo City, Cordova, Compostela, San Remigio, Balamban, Aloguinsan, San Fernando, Asturias, Barili, Medellin, Sogod, Tabuelan, City of Talisay) including Bantayan Islands and Camotes Islands, Bohol, the rest of Eastern Samar, the rest of Northern Samar, Samar, Leyte, Biliran, and Southern Leyte
-Mindanao
-Dinagat Islands and Surigao del Norte including Siargao - Bucas Grande Group
-Warning lead time: 36 hours
-Range of wind speeds: 39 to 61 km/h (Beaufort 6 to 7)
-Potential impacts of winds: Minimal to minor threat to life and property
-<br/><br/>
-OTHER HAZARDS AFFECTING LAND AREAS
-Heavy Rainfall Outlook
-Refer to Weather Advisory No. 11 issued at 8:00 AM today for the heavy rainfall outlook due to “KRISTINE”.
-<br/><br/>
-Severe Winds
-The wind signals warn the public of the general wind threat over an area due to the tropical cyclone. Local winds may be slightly stronger/enhanced in coastal and upland/mountainous areas exposed to winds. Winds are less strong in areas sheltered from the prevailing wind direction.
-<br/><br/>
-• Minor to moderate impacts from gale-force winds are possible within any of the localities where Wind Signal No. 2 is hoisted.
-• Minimal to minor impacts from strong winds are possible within any of the areas under Wind Signal No. 1.
-<br/><br/>
-The highest Wind Signal which may be hoisted during the occurrence of KRISTINE is Wind Signal No. 3.
-<br/><br/>
-Furthermore, the wind flow coming towards the circulation of KRISTINE and the Northeasterly Windflow will also bring strong to gale-force gusts over the following areas (especially in coastal and upland areas exposed to winds):
-<br/><br/>
-• Today (23 October): MIMAROPA, Visayas, and Mindanao.
-• Tomorrow (24 October): MIMAROPA, Bicol Region, Visayas, Basilan, Sulu, Tawi-Tawi, Zamboanga del Norte, Lanao del Sur, Northern Mindanao, Dinagat Islands, Surigao del Norte, Davao del Sur, and Davao Oriental.
-• Friday (25 October): MIMAROPA, Bicol Region, Western Visayas, Negros Occidental, Zamboanga del Norte, Basilan, Sulu, and Tawi-Tawi.
-<br/><br/>
-Coastal Inundation
-There is a moderate to significant risk of life-threatening storm surge in the next 48 hours over the low-lying or exposed coastal localities of Ilocos Norte, Ilocos Sur, La Union, Pangasinan, Cagayan, Isabela, Zambales, Aurora, Camarines Sur, and Catanduanes. For more information, refer to Storm Surge Warning No. 5 issued at 8:00 AM today.
-<br/><br/>
-HAZARDS AFFECTING COASTAL WATERS
-A Gale Warning is hoisted over the seaboards of Luzon and Visayas. For more information, refer to Gale Warning No. 5 issued at 5:00 AM today.
-<br/><br/>
-24-Hour Sea Condition Outlook
-<br/>
-• Up to high seas over the following coastal waters:
-• Up to 8.0 m: The seaboards of Batanes, Cagayan including Babuyan Islands, Ilocos Norte, and Ilocos Sur.<br/>
-• Up to 7.0 m: The seaboards of La Union, Pangasinan, Isabela, northern Aurora, Camarines Norte, Catanduanes, and the northern and eastern seaboards of Camarines Sur.<br/>
-• Up to 6.0 m: The remaining seaboard of Aurora, the seaboards of Quezon including Polillo Islands, and the seaboards of Northern Samar.<br/>
-• Sea travel is risky for all types or tonnage of vessels. All mariners must remain in port or, if underway, seek shelter or safe harbor as soon as possible until winds and waves subside.<br/>
-• Up to very rough seas over the following coastal waters: <br/>
-• Up to 5.0 m: The seaboards of Bataan, Batangas, Occidental Mindoro including Lubang Islands, Oriental Mindoro, Marinduque, Romblon, Calamian Islands, Cuyo Islands, Cagayancillo Islands, Zamboanga del Norte, Camiguin, Dinagat Islands, and the remaining seaboards of Bicol Region and Visayas.<br/>
-• Sea travel is risky for all types or tonnage of vessels. All mariners must remain in port or, if underway, seek shelter or safe harbor as soon as possible until winds and waves subside. <br/><br/>
-• Up to rough seas over the following coastal waters: <br/><br/>
-• Up to 4.0 m: The seaboards of Northern Mindanao, Surigao del Norte including Siargao and Bucas Grande Island Group, and Davao Oriental.<br/>
-• Up to 3.0 m: Surigao del Sur and the remaining seaboards of Luzon.<br/>
-• Mariners of small seacrafts, including all types of motorbancas, are advised not to venture out to sea under these conditions, especially if inexperienced or operating ill-equipped vessels.<br/><br/>
-• Up to moderate seas over the following coastal waters:<br/><br/>
-• Up to 2.5 m: The remaining seaboards of Mindanao.<br/>
-• Mariners of motorbancas and similarly-sized vessels are advised to take precautionary measures while venturing out to sea and, if possible, avoid navigation under these conditions.
-<br/><br/>
-TRACK AND INTENSITY OUTLOOK
-• KRISTINE is forecast to move generally northwestward for the next 12 hours before turning generally westward for the rest of the forecast period. It is forecast to make landfall over Isabela or northern Aurora tonight or tomorrow (24 October) early morning. It will then cross the mountainous terrain of Northern Luzon and emerge over the waters west of Ilocos Region tomorrow afternoon. KRISTINE may exit the Philippine Area of Responsibility (PAR) region on Friday (25 October). 
-• KRISTINE is forecast to gradually intensify into a severe tropical storm before making landfall. Slight weakening will occur while crossing Northern Luzon. Re-intensification may occur over the West Philippine Sea.
-<br/><br/>
-Considering these developments, the public and disaster risk reduction and management offices concerned are advised to take all necessary measures to protect life and property. Persons living in areas identified to be highly or very highly susceptible to these hazards are advised to follow evacuation and other instructions from local officials. For heavy rainfall warnings, thunderstorm/rainfall advisories, and other severe weather information specific to your area, please monitor products issued by your local PAGASA Regional Services Division.
-The next tropical cyclone bulletin will be issued at 11:00 AM today.
-<br/><br/>
-Source: DOST-PAGASA</p>
+
+            <!-- Weather card -->
+            <div id="weatherContainer" class="weather-grid">
+                <!-- Default weather card for Surigao City -->
+                <div class="weather-card">
+                    <h2 id="locationName">Surigao City</h2>
+                    <div id="weatherIcon" class="weather-icon">☁️</div>
+                    <div id="temperature" class="temperature">29°C</div>
+                    <div id="condition" class="condition">Cloudy</div>
+                    <div class="weather-details">
+                        <div class="weather-detail">
+                            <span class="weather-detail-icon">💧</span>
+                            <span id="humidity">Humidity: 76%</span>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="weather-detail-icon">💨</span>
+                            <span id="wind">Wind: 34 km/h</span>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="weather-detail-icon">🌡️</span>
+                            <span id="feelsLike">Feels like: 33°C</span>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="weather-detail-icon">🌧️</span>
+                            <span id="Precipitation">Precipitation: 5%</span>
+                        </div>
+                    </div>
+                    <div class="forecast" id="forecastSection">
+                        <div class="forecast-day">
+                            <div id="day1">Thu</div>
+                            <div id="icon1" class="forecast-icon">🌤️</div>
+                            <div id="temp1" class="forecast-temp">32°C</div>
+                        </div>
+                        <div class="forecast-day">
+                            <div id="day2">Fri</div>
+                            <div id="icon2" class="forecast-icon">️⛈️</div>
+                            <div id="temp2" class="forecast-temp">29°C</div>
+                        </div>
+                        <div class="forecast-day">
+                            <div id="day3">Sat</div>
+                            <div id="icon3" class="forecast-icon">⛈️</div>
+                            <div id="temp3" class="forecast-temp">32°C</div>
+                        </div>
+                        <div class="forecast-day">
+                            <div id="day4">Sun</div>
+                            <div id="icon4" class="forecast-icon">️⛈️</div>
+                            <div id="temp4" class="forecast-temp">29°C</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <p class="last-updated">Last updated: October 23, 2024 - 7:40 AM</p>
+        <p class="last-updated" id="lastUpdated">Last Updated: </p>
     </main>
     <footer>
         <div class="container">
@@ -283,11 +351,103 @@ Source: DOST-PAGASA</p>
         </div>
     </footer>
     <script>
-        setTimeout(function(){
-        location.reload();
-    }, 30000); // You can adjust the interval here
-        
+        setTimeout(function () {
+            location.reload();
+        }, 30000); // You can adjust the interval here
+
         console.log("Weather dashboard loaded successfully");
+
+        const weatherData = {
+            "Surigao City": {
+                icon: "☁️",
+                temperature: "29°C",
+                condition: "Cloudy",
+                humidity: "76%",
+                wind: "26 km/h",
+                feelsLike: "31°C",
+                Precipitation: "5%",
+                forecast: [
+                    { day: "Thu", icon: "🌤️", temp: "33°C" },
+                    { day: "Fri", icon: "🌤️", temp: "32°C" },
+                    { day: "Sat", icon: "️🌤️", temp: "30°C" },
+                    { day: "Sun", icon: "️⛈️", temp: "30°C" }
+                ]
+            },
+            "Manila": {
+                icon: "🌧️",
+                temperature: "26°C",
+                condition: "Light Rain Showers",
+                humidity: "92%",
+                wind: "3 km/h",
+                feelsLike: "27°C",
+                Precipitation: "94%",
+                forecast: [
+                    { day: "Thu", icon: "🌧️", temp: "28°C" },
+                    { day: "Fri", icon: "🌧️", temp: "30°C" },
+                    { day: "Sat", icon: "️🌥️", temp: "30°C" },
+                    { day: "Sun", icon: "️🌧️", temp: "30°C" }
+                ]
+            },
+            "Placer": {
+                icon: "🌥️",
+                temperature: "31°C",
+                condition: "Mostly Cloudy",
+                humidity: "76%",
+                wind: "26 km/h",
+                feelsLike: "31°C",
+                Precipitation: "10%",
+                forecast: [
+                    { day: "Thu", icon: "🌥️", temp: "32°C" },
+                    { day: "Fri", icon: "🌥️", temp: "31°C" },
+                    { day: "Sat", icon: "️⛈️", temp: "29°C" },
+                    { day: "Sun", icon: "️⛈️", temp: "29°C" }
+                ]
+            },
+            "Cebu City": {
+                icon: "☁️",
+                temperature: "27°C",
+                condition: "Cloudy",
+                humidity: "86%",
+                wind: "26 km/h",
+                feelsLike: "29°C",
+                Precipitation: "9%",
+                forecast: [
+                    { day: "Thu", icon: "☁️", temp: "30°C" },
+                    { day: "Fri", icon: "🌧️", temp: "30°C" },
+                    { day: "Sat", icon: "️🌧️", temp: "30°C" },
+                    { day: "Sun", icon: "️🌧️", temp: "29°C" }
+                ]
+            }
+        };
+
+        // Function to update weather info based on selected location
+        function updateWeather() {
+            const selectedLocation = document.getElementById('locationSelect').value;
+            const weather = weatherData[selectedLocation];
+
+            document.getElementById('locationName').innerText = selectedLocation;
+            document.getElementById('weatherIcon').textContent = weather.icon;
+            document.getElementById('temperature').innerText = weather.temperature;
+            document.getElementById('condition').innerText = weather.condition;
+            document.getElementById('humidity').innerText = `Humidity: ${weather.humidity}`;
+            document.getElementById('wind').innerText = `Wind: ${weather.wind}`;
+            document.getElementById('feelsLike').innerText = `Feels like: ${weather.feelsLike}`;
+            document.getElementById('Precipitation').innerText = `Precipitation: ${weather.Precipitation}`;
+
+            // Update forecast
+            for (let i = 0; i < 4; i++) {
+                document.getElementById(`day${i + 1}`).innerText = weather.forecast[i].day;
+                document.getElementById(`icon${i + 1}`).innerText = weather.forecast[i].icon;
+                document.getElementById(`temp${i + 1}`).innerText = weather.forecast[i].temp;
+            }
+
+            // Set the last updated time to when you saved the code
+            document.getElementById('lastUpdated').textContent = `Last updated: 10/23/2024 - 7:00 PM`; // Change this to your current time
+        }
+
+        // Initial load
+        updateWeather();
     </script>
 </body>
+
 </html>
