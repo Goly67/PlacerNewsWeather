@@ -421,7 +421,7 @@
             precipitation.textContent = `${weather.precipitation}%`;
 
             if (weather.stormAlert) {
-                stormAlert.innerHTML = `<span>⚠️</span> <span>${weather.stormAlert}</span>`;
+                stormAlert.innerHTML = `<span>⚠️ </span> <em><strong><span>${weather.stormAlert}</span></strong></em>`;
                 stormAlert.style.display = 'flex';
             } else {
                 stormAlert.style.display = 'none';
