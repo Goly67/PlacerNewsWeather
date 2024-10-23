@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://lh5.googleusercontent.com/Fol2SmB3PwOBfllrQC1yc07kXb0Q1sz2sIG_gebzoTBM3tG2oH9V9XI_uuTPv1aAgPSPW854chkqtarHLo_kGagLw6hgzn6aYvATVteYDD6lrFpUf52z-ppvskPeftZJxw=w960" type="image/x-icon">
+    <link rel="icon"
+        href="https://lh5.googleusercontent.com/Fol2SmB3PwOBfllrQC1yc07kXb0Q1sz2sIG_gebzoTBM3tG2oH9V9XI_uuTPv1aAgPSPW854chkqtarHLo_kGagLw6hgzn6aYvATVteYDD6lrFpUf52z-ppvskPeftZJxw=w960"
+        type="image/x-icon">
     <title>Placer News Weather</title>
     <style>
         :root {
@@ -39,7 +42,7 @@
             margin-bottom: 2rem;
         }
 
-        
+
 
         .header-content {
             display: flex;
@@ -65,21 +68,29 @@
         }
 
         select {
-    padding: 20px;
-    border-radius: 5px;
-    border: none;
-    background: rgba(255, 255, 255, 0.1); /* Translucent background */
-    color: white; /* White text color */
-    appearance: none; /* Remove default arrow */
-    cursor: pointer; /* Change cursor to pointer */
-    font-size: 16px; /* Font size */
-    margin-left: 10px; /* Add some space to the left */
-}
+            padding: 20px;
+            border-radius: 5px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            /* Translucent background */
+            color: white;
+            /* White text color */
+            appearance: none;
+            /* Remove default arrow */
+            cursor: pointer;
+            /* Change cursor to pointer */
+            font-size: 16px;
+            /* Font size */
+            margin-left: 10px;
+            /* Add some space to the left */
+            margin-top: 1rem;
+        }
 
-/* Add a custom dropdown arrow */
-select::-ms-expand {
-    display: none; /* Remove the default arrow in Internet Explorer */
-}
+        /* Add a custom dropdown arrow */
+        select::-ms-expand {
+            display: none;
+            /* Remove the default arrow in Internet Explorer */
+        }
 
         .card {
             background-color: rgba(255, 255, 255, 0.1);
@@ -110,9 +121,17 @@ select::-ms-expand {
         }
 
         @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
 
         .weather-grid {
@@ -232,12 +251,14 @@ select::-ms-expand {
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <header>
             <div class="header-content">
                 <div class="logo-title">
-                    <img src="https://lh5.googleusercontent.com/Fol2SmB3PwOBfllrQC1yc07kXb0Q1sz2sIG_gebzoTBM3tG2oH9V9XI_uuTPv1aAgPSPW854chkqtarHLo_kGagLw6hgzn6aYvATVteYDD6lrFpUf52z-ppvskPeftZJxw=w960" alt="Placer News Logo" class="logo">
+                    <img src="https://lh5.googleusercontent.com/Fol2SmB3PwOBfllrQC1yc07kXb0Q1sz2sIG_gebzoTBM3tG2oH9V9XI_uuTPv1aAgPSPW854chkqtarHLo_kGagLw6hgzn6aYvATVteYDD6lrFpUf52z-ppvskPeftZJxw=w960"
+                        alt="Placer News Logo" class="logo">
                     <h1>Placer News Weather</h1>
                 </div>
                 <select id="locationSelect">
@@ -316,10 +337,10 @@ select::-ms-expand {
                 feelsLike: "31",
                 precipitation: "3",
                 forecast: [
-                    { day: "Thu", icon: "🌤️", temp: "33°C", condition: "Sunny with clouds"  },
-                    { day: "Fri", icon: "🌤️", temp: "32°C", condition: "Sunny with clouds"  },
-                    { day: "Sat", icon: "️🌤️", temp: "30°C", condition: "Sunny with clouds"  },
-                    { day: "Sun", icon: "️⛈️", temp: "30°C", condition: "Heavy rain"  }
+                    { day: "Thu", icon: "🌤️", temp: "33°C", condition: "Sunny with clouds" },
+                    { day: "Fri", icon: "🌤️", temp: "32°C", condition: "Sunny with clouds" },
+                    { day: "Sat", icon: "️🌤️", temp: "30°C", condition: "Sunny with clouds" },
+                    { day: "Sun", icon: "️⛈️", temp: "30°C", condition: "Heavy rain" }
                 ],
                 stormAlert: "SIGNAL NO. 1"
             },
@@ -332,10 +353,10 @@ select::-ms-expand {
                 feelsLike: "27",
                 precipitation: "94",
                 forecast: [
-                    { day: "Thu", icon: "🌧️", temp: "28°C", condition: "Cloudy"  },
-                    { day: "Fri", icon: "🌧️", temp: "30°C", condition: "Light Rain Showers"  },
-                    { day: "Sat", icon: "️🌥️", temp: "30°C", condition: "Sunny full cloudy"  },
-                    { day: "Sun", icon: "️🌧️", temp: "30°C", condition: "Moderate Rain Shower"  }
+                    { day: "Thu", icon: "🌧️", temp: "28°C", condition: "Cloudy" },
+                    { day: "Fri", icon: "🌧️", temp: "30°C", condition: "Light Rain Showers" },
+                    { day: "Sat", icon: "️🌥️", temp: "30°C", condition: "Sunny full cloudy" },
+                    { day: "Sun", icon: "️🌧️", temp: "30°C", condition: "Moderate Rain Shower" }
                 ],
                 stormAlert: "SIGNAL NO. 3"
             },
@@ -348,10 +369,10 @@ select::-ms-expand {
                 feelsLike: "31",
                 precipitation: "10",
                 forecast: [
-                    { day: "Thu", icon: "🌥️", temp: "32°C", condition: "Sunny with clouds"  },
-                    { day: "Fri", icon: "🌥️", temp: "31°C", condition: "Sunny with clouds"  },
-                    { day: "Sat", icon: "️⛈️", temp: "29°C", condition: "Thunderstorm"  },
-                    { day: "Sun", icon: "️⛈️", temp: "29°C", condition: "Thunderstorm"  }
+                    { day: "Thu", icon: "🌥️", temp: "32°C", condition: "Sunny with clouds" },
+                    { day: "Fri", icon: "🌥️", temp: "31°C", condition: "Sunny with clouds" },
+                    { day: "Sat", icon: "️⛈️", temp: "29°C", condition: "Thunderstorm" },
+                    { day: "Sun", icon: "️⛈️", temp: "29°C", condition: "Thunderstorm" }
                 ],
                 stormAlert: "SIGNAL NO. 1"
             },
@@ -365,9 +386,9 @@ select::-ms-expand {
                 precipitation: "9",
                 forecast: [
                     { day: "Thu", icon: "☁️", temp: "30°C", condition: "Cloudy" },
-                    { day: "Fri", icon: "🌧️", temp: "30°C", condition: "Light Rain Showers"  },
-                    { day: "Sat", icon: "️🌧️", temp: "30°C", condition: "Light Rain Showers"  },
-                    { day: "Sun", icon: "️🌧️", temp: "29°C", condition: "Light Rain Showers"  }
+                    { day: "Fri", icon: "🌧️", temp: "30°C", condition: "Light Rain Showers" },
+                    { day: "Sat", icon: "️🌧️", temp: "30°C", condition: "Light Rain Showers" },
+                    { day: "Sun", icon: "️🌧️", temp: "29°C", condition: "Light Rain Showers" }
                 ],
                 stormAlert: "SIGNAL NO. 1"
             }
@@ -427,7 +448,7 @@ select::-ms-expand {
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 const tabId = tab.getAttribute('data-tab');
-                
+
                 tabs.forEach(t => t.classList.remove('active'));
                 tabContents.forEach(content => content.classList.remove('active'));
 
@@ -443,4 +464,5 @@ select::-ms-expand {
         setInterval(updateWeather, 300000);
     </script>
 </body>
+
 </html>
