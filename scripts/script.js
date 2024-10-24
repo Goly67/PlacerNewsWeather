@@ -133,6 +133,10 @@ async function updateWeather() {
         console.error('Error fetching news:', error);
         newsGrid.innerHTML = `<p>Error fetching news: ${error.message}</p>`;
     }
+
+    // Hide the loading animation after the news items are loaded
+    const loadingAnimation = document.querySelector('.loading-animation');
+    loadingAnimation.style.display = 'none';
 }
 
 
