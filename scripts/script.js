@@ -91,7 +91,7 @@ async function updateWeather() {
 }
 
 async function updateNews() {
-    const proxyUrl = 'https://your-glitch-project-url/proxy?url='; // Update this
+    const proxyUrl = 'https://octa-news.glitch.me/'; // Update this with your actual Glitch project URL
     const targetUrl = 'https://news.abs-cbn.com/rss';
 
     try {
@@ -133,8 +133,6 @@ async function updateNews() {
         newsGrid.innerHTML = '<p>Error fetching news.</p>';
     }
 }
-
-
 
 locationSelect.addEventListener('change', updateWeather);
 
