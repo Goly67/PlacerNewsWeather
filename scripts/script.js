@@ -99,7 +99,8 @@ async function updateNews() {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        const responseData = await response.text(); // Use responseData instead of data
+        
+        const responseData = await response.text(); // Correctly capturing the response text
 
         // Parse the RSS feed
         const parser = new DOMParser();
@@ -117,8 +118,8 @@ async function updateNews() {
         const limitedNewsItems = newsItems.slice(0, 6);
 
         // Debugging logs
-        console.log('Response Data:', responseData);
-        console.log('News Items:', newsItems);
+        console.log('Response Data:', responseData); // Check the response content
+        console.log('News Items:', newsItems); // Check the parsed news items
 
         // Generate HTML for news items
         newsGrid.innerHTML = limitedNewsItems.map(item => `
@@ -135,6 +136,7 @@ async function updateNews() {
         newsGrid.innerHTML = '<p>Error fetching news.</p>';
     }
 }
+
 
 
 console.log('Response Data:', data);
