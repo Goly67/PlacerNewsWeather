@@ -105,13 +105,13 @@ async function updateNews() {
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(data, 'text/xml');
 
-        const items = xmlDoc.querySelectorAll('item');
-        const newsItems = Array.from(items).map(item => ({
-            title: item.querySelector('title') ? item.querySelector('title').textContent : 'No title',
-            content: item.querySelector('description') ? item.querySelector('description').textContent : 'No description',
-            image: item.querySelector('media\\:thumbnail') ? item.querySelector('media\\:thumbnail').getAttribute('url') : '',
-            link: item.querySelector('link') ? item.querySelector('link').textContent : '#'
-        }));
+        const items = xmlDoc.getElementsByTagName('item');
+const newsItems = Array.from(items).map(item => ({
+    title: item.getElementsByTagName('title')[0]?.textContent || 'No title',
+    content: item.getElementsByTagName('description')[0]?.textContent || 'No description',
+    image: item.getElementsByTagName('media:thumbnail')[0]?.getAttribute('url') || '',
+    link: item.getElementsByTagName('link')[0]?.textContent || '#'
+}));
 
         // Limit to only the first 6 news items
         const limitedNewsItems = newsItems.slice(0, 6);
