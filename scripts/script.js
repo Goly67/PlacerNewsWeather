@@ -91,56 +91,42 @@ async function updateWeather() {
 }
 
 async function updateNews() {
-    const proxyUrl = 'https://octa-news-gma.glitch.me/proxy?url=';
-    const targetUrl = 'https://data.gmanetwork.com/gno/rss/news/feed.xml';
-
     try {
         const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        
-        const responseData = await response.text(); // Correctly capturing the response text
+        console.log('Proxy Response:', response);
+        const data = await response.text();
+        console.log('Raw XML Data:', data);
 
-        // Parse the RSS feed
         const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(responseData, 'text/xml');
+        const xmlDoc = parser.parseFromString(data, 'text/xml');
 
         const items = xmlDoc.querySelectorAll('item');
+        console.log('Parsed News Items:', items);  // Log to confirm items are parsed
+
         const newsItems = Array.from(items).map(item => ({
-            title: item.querySelector('title') ? item.querySelector('title').textContent : 'No title',
-            content: item.querySelector('description') ? item.querySelector('description').textContent : 'No description',
-            image: item.querySelector('media\\:thumbnail') ? item.querySelector('media\\:thumbnail').getAttribute('url') : '',
-            link: item.querySelector('link') ? item.querySelector('link').textContent : '#'
+            title: item.querySelector('title')?.textContent || 'No title',
+            content: item.querySelector('description')?.textContent || 'No description',
+            image: item.querySelector('media\\:thumbnail')?.getAttribute('url') || '',
+            link: item.querySelector('link')?.textContent || '#'
         }));
 
-        // Limit to only the first 6 news items
-        const limitedNewsItems = newsItems.slice(0, 6);
+        const limitedNewsItems = newsItems.slice(0, 9); // First 9 items
+        console.log('Limited News Items:', limitedNewsItems);  // Log items
 
-        // Debugging logs
-        console.log('Response Data:', responseData); // Check the response content
-        console.log('News Items:', newsItems); // Check the parsed news items
-
-        // Generate HTML for news items
         newsGrid.innerHTML = limitedNewsItems.map(item => `
             <div class="news-item">
                 ${item.image ? `<img src="${item.image}" alt="${item.title}" class="news-item-image">` : ''}
                 <div class="news-item-content">
-                    <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
-                    <p>${item.content}</p>
+                    <h3>${item.title}</h3>
                 </div>
             </div>
         `).join('');
     } catch (error) {
         console.error('Error fetching news:', error);
-        newsGrid.innerHTML = '<p>Error fetching news.</p>';
+        newsGrid.innerHTML = `<p>Error fetching news: ${error.message}</p>`;
     }
 }
 
-
-
-console.log('Response Data:', data);
-console.log('News Items:', newsItems);
 
 
 locationSelect.addEventListener('change', updateWeather);
