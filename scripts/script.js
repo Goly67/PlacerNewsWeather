@@ -101,35 +101,13 @@ async function updateNews() {
         }
         const data = await response.text();
 
-        // Parse the RSS feed
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(data, 'text/xml');
-
-        const items = xmlDoc.querySelectorAll('item');
-        const newsItems = Array.from(items).map(item => ({
-            title: item.querySelector('title') ? item.querySelector('title').textContent : 'No title',
-            content: item.querySelector('description') ? item.querySelector('description').textContent : 'No description',
-            image: item.querySelector('media\\:thumbnail') ? item.querySelector('media\\:thumbnail').getAttribute('url') : item.querySelector('image') ? item.querySelector('image').textContent : '',
-            link: item.querySelector('link') ? item.querySelector('link').textContent : '#'
-        }));
-
-        // Limit to only the first 6 news items
-        const limitedNewsItems = newsItems.slice(0, 6);
-
-        // Generate HTML for news items
-        newsGrid.innerHTML = limitedNewsItems.map(item => `
-            <div class="news-item">
-                ${item.image ? `<img src="${item.image}" alt="${item.title}" class="news-item-image">` : ''}
-                <div class="news-item-content">
-                    <h3>${item.title}</h3>
-                </div>
-            </div>
-        `).join('');
+        // Continue with parsing the XML...
     } catch (error) {
         console.error('Error fetching news:', error);
         newsGrid.innerHTML = '<p>Error fetching news.</p>';
     }
 }
+
 
 locationSelect.addEventListener('change', updateWeather);
 
