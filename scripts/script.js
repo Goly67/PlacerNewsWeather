@@ -101,12 +101,13 @@ async function updateNews() {
         }
         const data = await response.text();
 
-        // Continue with parsing the XML...
+        // Parse the RSS feed...
     } catch (error) {
         console.error('Error fetching news:', error);
         newsGrid.innerHTML = '<p>Error fetching news.</p>';
     }
 }
+
 
 
 locationSelect.addEventListener('change', updateWeather);
