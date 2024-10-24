@@ -91,8 +91,8 @@ async function updateWeather() {
 }
 
 async function updateNews() {
-    const proxyUrl = 'https://octa-news-gma.glitch.me/proxy?url='; // Your Glitch project URL
-    const targetUrl = 'https://www.gmanetwork.com/news/rss'; // GMA Network's RSS feed
+    const proxyUrl = 'https://octa-news-gma.glitch.me/proxy?url=';
+    const targetUrl = 'https://www.gmanetwork.com/news/rss';
 
     try {
         const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
