@@ -92,7 +92,7 @@ async function updateWeather() {
 
 async function updateNews() {
     const targetUrl = 'https://news.abs-cbn.com/rss';
-    const proxyUrl = `https://octa-news.glitch.me/proxy?url=${encodeURIComponent(targetUrl)}`; // Correctly set the proxy URL
+    const proxyUrl = `https://octa-news.glitch.me/proxy?url=${encodeURIComponent(targetUrl)}`; // Ensure this is correct
 
     try {
         const response = await fetch(proxyUrl);
@@ -114,7 +114,7 @@ async function updateNews() {
         }));
 
         // Limit to only the first 6 news items
-        const limitedNewsItems = newsItems.slice(0, 6); // Get only the first 6 items
+        const limitedNewsItems = newsItems.slice(0, 6);
 
         // Generate HTML for news items
         newsGrid.innerHTML = limitedNewsItems.map(item => `
@@ -130,6 +130,7 @@ async function updateNews() {
         newsGrid.innerHTML = '<p>Error fetching news.</p>';
     }
 }
+
 
 
 locationSelect.addEventListener('change', updateWeather);
