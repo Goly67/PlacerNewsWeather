@@ -90,58 +90,6 @@ async function updateWeather() {
     lastUpdated.textContent = `Last updated: ${new Date().toLocaleString()}`;
 }
 
-async function updateNews() {
-    const proxyUrl = 'https://octa-news.glitch.me/proxy?url=';
-    const targetUrl = 'https://news.abs-cbn.com/rss';
-
-    try {
-        const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
-        console.log('Response Status:', response.status); // Log response status
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const data = await response.text();
-        console.log('Fetched Data:', data); // Log the raw data
-
-        // Parse the RSS feed
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(data, 'text/xml');
-
-        const items = xmlDoc.querySelectorAll('item');
-        const newsItems = Array.from(items).map(item => ({
-            title: item.querySelector('title') ? item.querySelector('title').textContent : 'No title',
-            content: item.querySelector('description') ? item.querySelector('description').textContent : 'No description',
-            image: item.querySelector('media\\:thumbnail') ? item.querySelector('media\\:thumbnail').getAttribute('url') : item.querySelector('image') ? item.querySelector('image').textContent : '',
-            link: item.querySelector('link') ? item.querySelector('link').textContent : '#'
-        }));
-
-        console.log('Parsed News Items:', newsItems); // Log parsed news items
-
-        // Limit to only the first 6 news items
-        const limitedNewsItems = newsItems.slice(0, 6);
-
-        // Generate HTML for news items
-        newsGrid.innerHTML = limitedNewsItems.map(item => `
-            <div class="news-item">
-                ${item.image ? `<img src="${item.image}" alt="${item.title}" class="news-item-image">` : ''}
-                <div class="news-item-content">
-                    <h3>${item.title}</h3>
-                    <a href="${item.link}" target="_blank">Read more</a>
-                </div>
-            </div>
-        `).join('');
-
-        // If there are no items, show a message
-        if (limitedNewsItems.length === 0) {
-            newsGrid.innerHTML = '<p>No news available at the moment.</p>';
-        }
-    } catch (error) {
-        console.error('Error fetching news:', error);
-        newsGrid.innerHTML = '<p>Error fetching news.</p>';
-    }
-}
-
-
 locationSelect.addEventListener('change', updateWeather);
 
 // Initial update
