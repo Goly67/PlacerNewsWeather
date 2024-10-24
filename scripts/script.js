@@ -91,8 +91,8 @@ async function updateWeather() {
 }
 
 async function updateNews() {
-    const proxyUrl = 'https://octa-news-gma.glitch.me/proxy?url='; // Your proxy server
-    const targetUrl = 'https://data.gmanetwork.com/gno/rss/news/feed.xml'; // Updated GMA news feed URL
+    const proxyUrl = 'https://octa-news-gma.glitch.me/proxy?url=';
+    const targetUrl = 'https://data.gmanetwork.com/gno/rss/news/feed.xml';
 
     try {
         const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
@@ -114,7 +114,7 @@ async function updateNews() {
         }));
 
         // Limit to only the first 6 news items
-        const limitedNewsItems = newsItems.slice(0, 6); // Get only the first 6 items
+        const limitedNewsItems = newsItems.slice(0, 6);
 
         // Generate HTML for news items
         newsGrid.innerHTML = limitedNewsItems.map(item => `
@@ -131,6 +131,10 @@ async function updateNews() {
         newsGrid.innerHTML = '<p>Error fetching news.</p>';
     }
 }
+
+console.log('Response Data:', data);
+console.log('News Items:', newsItems);
+
 
 locationSelect.addEventListener('change', updateWeather);
 
