@@ -91,17 +91,27 @@ async function updateWeather() {
 }
 
 async function updateNews() {
+    // Ensure these URLs are defined within the function or as global variables
+    const proxyUrl = 'https://octa-news-gma.glitch.me/proxy?url=';
+    const targetUrl = 'https://data.gmanetwork.com/gno/rss/news/feed.xml';
+
     try {
         const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
         console.log('Proxy Response:', response);
+
+        if (!response.ok) {
+            throw new Error(`Network response was not ok: ${response.statusText}`);
+        }
+
         const data = await response.text();
         console.log('Raw XML Data:', data);
 
+        // Parse the RSS feed data
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(data, 'text/xml');
 
         const items = xmlDoc.querySelectorAll('item');
-        console.log('Parsed News Items:', items);  // Log to confirm items are parsed
+        console.log('Parsed News Items:', items);
 
         const newsItems = Array.from(items).map(item => ({
             title: item.querySelector('title')?.textContent || 'No title',
@@ -110,14 +120,17 @@ async function updateNews() {
             link: item.querySelector('link')?.textContent || '#'
         }));
 
-        const limitedNewsItems = newsItems.slice(0, 9); // First 9 items
-        console.log('Limited News Items:', limitedNewsItems);  // Log items
+        // Limit to the first 6 news items
+        const limitedNewsItems = newsItems.slice(0, 9);
+        console.log('Limited News Items:', limitedNewsItems);
 
+        // Generate HTML for the news items
         newsGrid.innerHTML = limitedNewsItems.map(item => `
             <div class="news-item">
                 ${item.image ? `<img src="${item.image}" alt="${item.title}" class="news-item-image">` : ''}
                 <div class="news-item-content">
-                    <h3>${item.title}</h3>
+                    <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
+                    <p>${item.content}</p>
                 </div>
             </div>
         `).join('');
@@ -126,8 +139,6 @@ async function updateNews() {
         newsGrid.innerHTML = `<p>Error fetching news: ${error.message}</p>`;
     }
 }
-
-
 
 locationSelect.addEventListener('change', updateWeather);
 
