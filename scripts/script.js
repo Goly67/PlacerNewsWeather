@@ -91,8 +91,8 @@ async function updateWeather() {
 }
 
 async function updateNews() {
-    const proxyUrl = 'https://octa-news-gma.glitch.me/proxy?url=';
-    const targetUrl = 'https://www.gmanetwork.com/news/rss';
+    const proxyUrl = 'https://octa-news-gma.glitch.me/proxy?url='; // Your proxy server
+    const targetUrl = 'https://data.gmanetwork.com/gno/rss/news/feed.xml'; // Updated GMA news feed URL
 
     try {
         const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
@@ -109,21 +109,20 @@ async function updateNews() {
         const newsItems = Array.from(items).map(item => ({
             title: item.querySelector('title') ? item.querySelector('title').textContent : 'No title',
             content: item.querySelector('description') ? item.querySelector('description').textContent : 'No description',
-            image: item.querySelector('media\\:thumbnail') ? item.querySelector('media\\:thumbnail').getAttribute('url') : item.querySelector('image') ? item.querySelector('image').textContent : '',
+            image: item.querySelector('media\\:thumbnail') ? item.querySelector('media\\:thumbnail').getAttribute('url') : '',
             link: item.querySelector('link') ? item.querySelector('link').textContent : '#'
         }));
 
         // Limit to only the first 6 news items
-        const limitedNewsItems = newsItems.slice(0, 6);
+        const limitedNewsItems = newsItems.slice(0, 6); // Get only the first 6 items
 
         // Generate HTML for news items
         newsGrid.innerHTML = limitedNewsItems.map(item => `
             <div class="news-item">
                 ${item.image ? `<img src="${item.image}" alt="${item.title}" class="news-item-image">` : ''}
                 <div class="news-item-content">
-                    <h3>${item.title}</h3>
+                    <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
                     <p>${item.content}</p>
-                    <a href="${item.link}" target="_blank">Read more</a>
                 </div>
             </div>
         `).join('');
