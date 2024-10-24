@@ -91,15 +91,17 @@ async function updateWeather() {
 }
 
 async function updateNews() {
-    const proxyUrl = 'https://octa-news.glitch.me/proxy?url='; // Update this URL to point to your Glitch server
+    const proxyUrl = 'https://octa-news.glitch.me/proxy?url=';
     const targetUrl = 'https://news.abs-cbn.com/rss';
 
     try {
         const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
+        console.log('Response:', response); // Log the response object
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         const data = await response.text();
+        console.log('Fetched Data:', data); // Log the raw data
 
         // Parse the RSS feed
         const parser = new DOMParser();
@@ -112,6 +114,9 @@ async function updateNews() {
             image: item.querySelector('media\\:thumbnail') ? item.querySelector('media\\:thumbnail').getAttribute('url') : item.querySelector('image') ? item.querySelector('image').textContent : '',
             link: item.querySelector('link') ? item.querySelector('link').textContent : '#'
         }));
+
+        // Log the news items to check if they're populated
+        console.log('Parsed News Items:', newsItems);
 
         // Limit to only the first 6 news items
         const limitedNewsItems = newsItems.slice(0, 6);
@@ -131,6 +136,7 @@ async function updateNews() {
         newsGrid.innerHTML = '<p>Error fetching news.</p>';
     }
 }
+
 
 
 
