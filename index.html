@@ -330,67 +330,67 @@
         const weatherData = {
             "Surigao City": {
                 icon: "☁️",
-                temperature: "28",
+                temperature: "31",
                 condition: "Cloudy",
-                humidity: "78",
-                wind: "19 ",
+                humidity: "65",
+                wind: "14 ",
                 feelsLike: "31",
-                precipitation: "3",
+                precipitation: "8",
                 forecast: [
-                    { day: "Thu", icon: "🌤️", temp: "33°C", condition: "Sunny with clouds" },
-                    { day: "Fri", icon: "🌤️", temp: "32°C", condition: "Sunny with clouds" },
-                    { day: "Sat", icon: "️🌤️", temp: "30°C", condition: "Sunny with clouds" },
-                    { day: "Sun", icon: "️⛈️", temp: "30°C", condition: "Heavy rain" }
-                ],
-                stormAlert: "SIGNAL NO. 1"
+                    { day: "Fri", icon: "🌧️", temp: "33°C", condition: "Sunny with scattered clouds" },
+                    { day: "Sat", icon: "🌧️", temp: "32°C", condition: "Heavy Rain Shower" },
+                    { day: "Sun", icon: "️🌧️", temp: "29°C", condition: "Heavy Rain Shower" },
+                    { day: "Mon", icon: "️🌧️", temp: "30°C", condition: "Light Rain Shower" }
+                ]
+                //stormAlert: "SIGNAL NO. 1"
             },
             "Manila": {
                 icon: "🌧️",
-                temperature: "26",
+                temperature: "27",
                 condition: "Light Rain Showers",
-                humidity: "92",
+                humidity: "90",
                 wind: "3 ",
-                feelsLike: "27",
+                feelsLike: "28",
                 precipitation: "94",
                 forecast: [
-                    { day: "Thu", icon: "🌧️", temp: "28°C", condition: "Cloudy" },
-                    { day: "Fri", icon: "🌧️", temp: "30°C", condition: "Light Rain Showers" },
-                    { day: "Sat", icon: "️🌥️", temp: "30°C", condition: "Sunny full cloudy" },
-                    { day: "Sun", icon: "️🌧️", temp: "30°C", condition: "Moderate Rain Shower" }
+                    { day: "Fri", icon: "🌧️", temp: "30°C", condition: "Heavy Rain Shower" },
+                    { day: "Sat", icon: "🌧️", temp: "31°C", condition: "Light Rain Showers" },
+                    { day: "Sun", icon: "️🌥️", temp: "31°C", condition: "Sunny with scattered clouds" },
+                    { day: "Mon", icon: "️🌧️", temp: "31°C", condition: "Ligh Rain Shower" }
                 ],
-                stormAlert: "SIGNAL NO. 3"
+                stormAlert: "SIGNAL NO. 2"
             },
             "Placer": {
-                icon: "🌥️",
+                icon: "☁️",
                 temperature: "31",
-                condition: "Mostly Cloudy",
-                humidity: "76",
-                wind: "26 ",
-                feelsLike: "31",
-                precipitation: "10",
+                condition: "Cloudy",
+                humidity: "65",
+                wind: "18 ",
+                feelsLike: "32",
+                precipitation: "8",
                 forecast: [
-                    { day: "Thu", icon: "🌥️", temp: "32°C", condition: "Sunny with clouds" },
-                    { day: "Fri", icon: "🌥️", temp: "31°C", condition: "Sunny with clouds" },
-                    { day: "Sat", icon: "️⛈️", temp: "29°C", condition: "Thunderstorm" },
-                    { day: "Sun", icon: "️⛈️", temp: "29°C", condition: "Thunderstorm" }
-                ],
-                stormAlert: "SIGNAL NO. 1"
+                    { day: "Fri", icon: "🌧️", temp: "32°C", condition: "Heavy Rain Shower" },
+                    { day: "Sat", icon: "🌧️", temp: "29°C", condition: "Heavy Rain Shower" },
+                    { day: "Sun", icon: "️🌧️", temp: "29°C", condition: "Heavy Rain Shower" },
+                    { day: "Mon", icon: "️🌧️", temp: "30°C", condition: "Light Rain Shower" }
+                ]
+                //stormAlert: "SIGNAL NO. 1"
             },
             "Cebu City": {
                 icon: "☁️",
-                temperature: "27",
+                temperature: "31",
                 condition: "Cloudy",
-                humidity: "86",
-                wind: "26 ",
-                feelsLike: "29",
-                precipitation: "9",
+                humidity: "73",
+                wind: "39 ",
+                feelsLike: "31",
+                precipitation: "18",
                 forecast: [
-                    { day: "Thu", icon: "☁️", temp: "30°C", condition: "Cloudy" },
-                    { day: "Fri", icon: "🌧️", temp: "30°C", condition: "Light Rain Showers" },
-                    { day: "Sat", icon: "️🌧️", temp: "30°C", condition: "Light Rain Showers" },
-                    { day: "Sun", icon: "️🌧️", temp: "29°C", condition: "Light Rain Showers" }
-                ],
-                stormAlert: "SIGNAL NO. 1"
+                    { day: "Fri", icon: "⛈️", temp: "30°C", condition: "Cloudy" },
+                    { day: "Sat", icon: "🌧️", temp: "30°C", condition: "Thunderstorm" },
+                    { day: "Sun", icon: "️☁️", temp: "30°C", condition: "Cloudy" },
+                    { day: "Mon", icon: "️🌤️", temp: "29°C", condition: "Sunny with scattered clouds" }
+                ]
+                //stormAlert: "SIGNAL NO. 1"
             }
         };
 
@@ -436,7 +436,7 @@
                 </div>
             `).join('');
 
-            lastUpdated.textContent = `Last updated: 10/23/24 10:00PM`;
+            lastUpdated.textContent = `Last updated: 10/24/24 10:30AM`;
         }
 
         locationSelect.addEventListener('change', updateWeather);
