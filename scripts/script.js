@@ -99,22 +99,26 @@ async function updateNews() {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        const data = await response.text();
+        const responseData = await response.text(); // Use responseData instead of data
 
         // Parse the RSS feed
         const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(data, 'text/xml');
+        const xmlDoc = parser.parseFromString(responseData, 'text/xml');
 
-        const items = xmlDoc.getElementsByTagName('item');
-const newsItems = Array.from(items).map(item => ({
-    title: item.getElementsByTagName('title')[0]?.textContent || 'No title',
-    content: item.getElementsByTagName('description')[0]?.textContent || 'No description',
-    image: item.getElementsByTagName('media:thumbnail')[0]?.getAttribute('url') || '',
-    link: item.getElementsByTagName('link')[0]?.textContent || '#'
-}));
+        const items = xmlDoc.querySelectorAll('item');
+        const newsItems = Array.from(items).map(item => ({
+            title: item.querySelector('title') ? item.querySelector('title').textContent : 'No title',
+            content: item.querySelector('description') ? item.querySelector('description').textContent : 'No description',
+            image: item.querySelector('media\\:thumbnail') ? item.querySelector('media\\:thumbnail').getAttribute('url') : '',
+            link: item.querySelector('link') ? item.querySelector('link').textContent : '#'
+        }));
 
         // Limit to only the first 6 news items
         const limitedNewsItems = newsItems.slice(0, 6);
+
+        // Debugging logs
+        console.log('Response Data:', responseData);
+        console.log('News Items:', newsItems);
 
         // Generate HTML for news items
         newsGrid.innerHTML = limitedNewsItems.map(item => `
@@ -131,6 +135,7 @@ const newsItems = Array.from(items).map(item => ({
         newsGrid.innerHTML = '<p>Error fetching news.</p>';
     }
 }
+
 
 console.log('Response Data:', data);
 console.log('News Items:', newsItems);
