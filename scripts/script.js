@@ -140,12 +140,6 @@ async function updateNews() {
     }
 }
 
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    next();
-});
-
-
 locationSelect.addEventListener('change', updateWeather);
 
 // Initial update
