@@ -114,10 +114,7 @@ async function updateNews() {
         }));
 
         // Limit to only the first 6 news items
-        const limitedNewsItems = newsItems.slice(0, 9); // Get only the first 6 items
-
-        // Log the news items to see the image URLs
-        console.log('Limited News Items:', limitedNewsItems);
+        const limitedNewsItems = newsItems.slice(0, 6);
 
         // Generate HTML for news items
         newsGrid.innerHTML = limitedNewsItems.map(item => `
@@ -125,6 +122,8 @@ async function updateNews() {
                 ${item.image ? `<img src="${item.image}" alt="${item.title}" class="news-item-image">` : ''}
                 <div class="news-item-content">
                     <h3>${item.title}</h3>
+                    <p>${item.content}</p>
+                    <a href="${item.link}" target="_blank">Read more</a>
                 </div>
             </div>
         `).join('');
@@ -133,7 +132,6 @@ async function updateNews() {
         newsGrid.innerHTML = '<p>Error fetching news.</p>';
     }
 }
-
 
 locationSelect.addEventListener('change', updateWeather);
 
