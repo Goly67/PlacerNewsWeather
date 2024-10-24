@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://lh5.googleusercontent.com/YvDwBjidy318dHv19sN7pf30yAc-A7go-jqjQl1mSeTY56fvwMy8E2a6gNQ5h7TxgbAtGRoykm44HMNr2yj9em1KjUnjiZmLNH4ROmtf-3UtcjlUrMWXX71tXR-OBfA19Q=w1440" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="css/WeatherCSS.css">
+    <title>Octa News</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-title">
+                <img src="https://lh5.googleusercontent.com/YvDwBjidy318dHv19sN7pf30yAc-A7go-jqjQl1mSeTY56fvwMy8E2a6gNQ5h7TxgbAtGRoykm44HMNr2yj9em1KjUnjiZmLNH4ROmtf-3UtcjlUrMWXX71tXR-OBfA19Q=w1440" alt="Octa News Logo" class="logo">
+                <h1>Octa News</h1>
+            </div>
+            <button class="burger-menu" aria-label="Open menu">☰</button>
+        </header>
+
+        <nav class="nav-menu">
+            <button class="close-menu" aria-label="Close menu">&times;</button>
+            <ul>
+                <li><a href="index.html">Weather</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+
+        <div class="location-selector">
+            <select id="locationSelect">
+                <option value="Surigao City">Surigao City</option>
+                <option value="Manila">Manila</option>
+                <option value="Placer">Placer</option>
+                <option value="Cebu City">Cebu City</option>
+            </select>
+        </div>
+
+        <main>
+            <div id="weather" class="card">
+                <div class="card-header">
+                    <h2 id="selectedLocation" class="card-title">Surigao City</h2>
+                    <div id="stormAlert" class="storm-alert"></div>
+                </div>
+                <div class="weather-main">
+                    <div id="weatherIcon" class="weather-icon">☁️</div>
+                    <div id="temperature" class="temperature">?°C</div>
+                    <div id="condition" class="condition">?</div>
+                    <div class="weather-details">
+                        <div class="weather-detail">
+                            <span class="weather-detail-icon">💧</span>
+                            <span>Humidity</span>
+                            <span id="humidity" class="font-semibold">?</span>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="weather-detail-icon">💨</span>
+                            <span>Wind</span>
+                            <span id="wind" class="font-semibold">?</span>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="weather-detail-icon">🌡️</span>
+                            <span>Feels like</span>
+                            <span id="feelsLike" class="font-semibold">?</span>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="weather-detail-icon">🌧️</span>
+                            <span>Precipitation</span>
+                            <span id="precipitation" class="font-semibold">?</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="forecast" class="card">
+                <div class="card-header">
+                    <h2 class="card-title">4-Day Forecast</h2>
+                </div>
+                <div class="forecast-grid" id="forecastGrid"></div>
+            </div>
+
+            <p id="lastUpdated" class="last-updated"></p>
+
+            <div id="news" class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Latest News</h2>
+                    <a href="https://news.abs-cbn.com/" target="_blank" aria-label="Go to ABS-CBN News">
+                        <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/8c498b2b-fcd8-4558-9a63-d96873c7274a/dg1xi3d-d134f5d7-a5a0-4410-8edd-ecdd8ed6edb8.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzhjNDk4YjJiLWZjZDgtNDU1OC05YTYzLWQ5Njg3M2M3Mjc0YVwvZGcxeGkzZC1kMTM0ZjVkNy1hNWEwLTQ0MTAtOGVkZC1lY2RkOGVkNmVkYjgucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.g7cN1BckS5V20o_2lJPOqYdLZjCKeh4Jd6mzLTX3fFA" alt="ABS-CBN Logo" class="abs-cbn-logo">
+                    </a>
+                    </div>
+                <div class="news-grid" id="newsGrid">
+                    <!-- News items will be dynamically inserted here -->
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Octa News. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="scripts/script.js"></script>
+</body>
+</html>
