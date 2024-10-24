@@ -96,7 +96,7 @@ async function updateNews() {
 
     try {
         const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
-        console.log('Response:', response); // Log the response object
+        console.log('Response Status:', response.status); // Log response status
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -115,8 +115,7 @@ async function updateNews() {
             link: item.querySelector('link') ? item.querySelector('link').textContent : '#'
         }));
 
-        // Log the news items to check if they're populated
-        console.log('Parsed News Items:', newsItems);
+        console.log('Parsed News Items:', newsItems); // Log parsed news items
 
         // Limit to only the first 6 news items
         const limitedNewsItems = newsItems.slice(0, 6);
@@ -131,15 +130,16 @@ async function updateNews() {
                 </div>
             </div>
         `).join('');
+        
+        // If there are no items, show a message
+        if (limitedNewsItems.length === 0) {
+            newsGrid.innerHTML = '<p>No news available at the moment.</p>';
+        }
     } catch (error) {
         console.error('Error fetching news:', error);
         newsGrid.innerHTML = '<p>Error fetching news.</p>';
     }
 }
-
-
-
-
 
 locationSelect.addEventListener('change', updateWeather);
 
