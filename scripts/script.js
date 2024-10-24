@@ -130,7 +130,7 @@ async function updateNews() {
                 </div>
             </div>
         `).join('');
-        
+
         // If there are no items, show a message
         if (limitedNewsItems.length === 0) {
             newsGrid.innerHTML = '<p>No news available at the moment.</p>';
@@ -140,6 +140,7 @@ async function updateNews() {
         newsGrid.innerHTML = '<p>Error fetching news.</p>';
     }
 }
+
 
 locationSelect.addEventListener('change', updateWeather);
 
